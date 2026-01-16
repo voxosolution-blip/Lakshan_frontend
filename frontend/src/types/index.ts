@@ -44,9 +44,6 @@ export interface Product {
   description?: string;
   createdAt: string;
   updatedAt: string;
-  // Backwards compatibility with snake_case
-  selling_price?: number;
-  is_active?: boolean;
 }
 
 export interface ProductBOM {
@@ -61,9 +58,6 @@ export interface ProductBOM {
     unit: string;
     currentStock: number;
   };
-  // Backwards compatibility with snake_case
-  inventory_item_id?: string;
-  quantity_required?: number;
 }
 
 export interface CreateProductData {

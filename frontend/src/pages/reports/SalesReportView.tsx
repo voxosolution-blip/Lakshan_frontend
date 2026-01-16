@@ -543,8 +543,8 @@ const ReportShopDetailsView = ({
   const products = getUniqueProducts();
 
   // Get month options based on date range of sales
-  const getMonthOptions = () => {
-    const options = [];
+  const getMonthOptions = (): { value: string; label: string }[] => {
+    const options: { value: string; label: string }[] = [];
     const months = new Set<string>();
     
     sales.forEach((sale) => {
