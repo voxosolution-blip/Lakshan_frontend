@@ -1,11 +1,25 @@
 [build]
   command = "cd frontend && npm install && npm run build"
   publish = "frontend/dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "22"
 
+# SPA routing - all non-file requests go to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't cache HTML files
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
