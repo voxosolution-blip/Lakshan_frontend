@@ -14,6 +14,11 @@ export default defineConfig({
     port: 5173,
     strictPort: false,
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'terser',
+  },
   optimizeDeps: {
     force: false, // Set to true to force re-optimization
   },
