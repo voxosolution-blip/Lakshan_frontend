@@ -44,6 +44,9 @@ export interface Product {
   description?: string;
   createdAt: string;
   updatedAt: string;
+  // Backwards compatibility with snake_case
+  selling_price?: number;
+  is_active?: boolean;
 }
 
 export interface ProductBOM {
@@ -58,6 +61,9 @@ export interface ProductBOM {
     unit: string;
     currentStock: number;
   };
+  // Backwards compatibility with snake_case
+  inventory_item_id?: string;
+  quantity_required?: number;
 }
 
 export interface CreateProductData {
@@ -235,5 +241,81 @@ export interface CreateReturnData {
   replacementProductId?: string;
   replacementQuantity?: number;
 }
+
+// ============================================
+// MILK & FARMERS
+// ============================================
+
+export interface Farmer {
+  id: string;
+  name: string;
+  phone?: string;
+  address?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MilkCollection {
+  id: string;
+  farmerId: string;
+  date: string;
+  time: string;
+  quantity_liters: number;
+  message?: string;
+  createdAt: string;
+  updatedAt: string;
+  farmer?: Farmer;
+}
+
+export interface CreateMilkCollectionData {
+  farmerId: string;
+  date: string;
+  time: string;
+  quantity_liters: number;
+  quantity?: number;
+}
+
+export interface Expense {
+  id: string;
+  category: string;
+  description: string;
+  amount: number;
+  date: string;
+  createdBy?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateExpenseData {
+  category: string;
+  description: string;
+  amount: number;
+  date?: string;
+}
+
+export interface Worker {
+  id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  position: string;
+  salary?: number;
+  joinDate: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateWorkerData {
+  name: string;
+  email?: string;
+  phone?: string;
+  position: string;
+  salary?: number;
+  joinDate?: string;
+  isActive?: boolean;
+}
+
 
 
